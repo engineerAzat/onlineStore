@@ -22,4 +22,18 @@ public class Cart {
     public List<Integer> getItems() {
         return items;
     }
+
+    public void clearCart() {
+        this.items.clear();
+    }
+
+    public int getItemsCount() {
+        return this.items.size();
+    }
+
+    public void removeItem(Integer id) {
+        if (id != null) {
+            this.items.remove(Integer.valueOf(id));
+        }
+    }
 }

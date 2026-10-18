@@ -26,4 +26,25 @@ public class OrderController {
     public List<Integer> getItems() {
         return orderService.getItems();
     }
+
+    @GetMapping("/clear")
+    public void clearCart() {
+        orderService.clearCart();
+    }
+
+    @GetMapping("/count")
+    public int getItemsCount() {
+        return orderService.getItemsCount();
+    }
+
+    @GetMapping("/remove")
+    public void remove(@RequestParam("id") Integer id) {
+        orderService.removeItem(id);
+    }
+
+    @GetMapping("/total-price")
+    public String getTotalPrice() {
+        int price = orderService.getTotalPraice();
+        return "Итого к оплате " + price + " рублей.";
+    }
 }
