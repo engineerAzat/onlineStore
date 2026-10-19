@@ -28,7 +28,7 @@ public class HelloService {
         int len1 = user.length();
         int len2 = userTwo.length();
         int sum = len1 + len2;
-        return "Количество букв в имени " + user + ": " + len1 +", а колчество букв в имении"
+        return "Количество букв в имени " + user + ": " + len1 +", а количество букв в имени"
                 + userTwo + ": " + len2 + ". Суммарное количество букв: " +  sum;
     }
 
@@ -64,5 +64,12 @@ public class HelloService {
         String result2 = userTwo.replaceAll("(?iu)[аоеия]", "*");
 
         return "Зашифрованные имена: " + result1 + " и " + result2;
+    }
+
+    private int count = 0;
+
+    public int incrementAndGet() {
+        count += 1;
+        return count;
     }
 }

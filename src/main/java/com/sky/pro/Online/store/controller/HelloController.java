@@ -49,6 +49,16 @@ public class HelloController {
 
 
 
+    @GetMapping("/click")
+    public String click() {
+
+        int currentClick = helloService.incrementAndGet();
+
+        return "Вы нажали на ссылку! Всего кликов: " + currentClick;
+    }
+
+
+
 
 
 }
