@@ -1,5 +1,6 @@
 package com.sky.pro.Online.store.service;
 
+import com.sky.pro.Online.store.model.LikeModel;
 import com.sky.pro.Online.store.model.NameCounter;
 import org.springframework.stereotype.Service;
 
@@ -8,21 +9,32 @@ import java.util.Map;
 @Service
 public class LikeService {
 
-    private final NameCounter nameCounter;
+    private final LikeModel likeModel;
 
-    public LikeService(NameCounter nameCounter) {
-        this.nameCounter = nameCounter;
+    public LikeService(LikeModel likeModel) {
+        this.likeModel = likeModel;
     }
 
-    public String likeName(String name) {
-        nameCounter.addLike(name);
-
-        int currentLikes = nameCounter.getAllLikes().get(name);
-        return "Вы лайкнули имя " + name + "! Теперь у него лайков: " + currentLikes;
-
+    public String addLikeGetText() {
+        likeModel.addLike();
+        int currentLikes = likeModel.getLikes();
+        return "Вы лайкнули котика! Всего лайков от вас: " + currentLikes;
     }
 
-    public Map<String, Integer> getStats() {
-        return nameCounter.getAllLikes();
+    public String getCurrentLikesText() {
+        int currentLikes = likeModel.getLikes();
+        return "Текущий статус котика: У него " + currentLikes + " лайков от вас.";
+    }
+
+    public String delLikeGetText() {
+        likeModel.delLike();
+        int currentLikes = likeModel.getLikes();
+        return "Вы забрали свой лайк! Текущий статус котика: У него " + currentLikes + " лайков от вас.";
+    }
+
+    public String resetLikeGetText() {
+        likeModel.resetLike();
+        int currentLikes = likeModel.getLikes();
+        return "Вы забрали все свои лайки! Текущий статус котика: У него " + currentLikes + " лайков от вас.";
     }
 }

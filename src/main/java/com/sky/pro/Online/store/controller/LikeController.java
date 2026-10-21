@@ -9,21 +9,32 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/like-system")
+@RequestMapping("/cat")
 public class LikeController {
 
     private final LikeService likeService;
+
     public LikeController(LikeService likeService) {
         this.likeService = likeService;
     }
 
-    @GetMapping("/add")
-    public String likeName(@RequestParam("name") String name) {
-        return likeService.likeName(name);
+    @GetMapping("/like")
+    public String putLike() {
+        return likeService.addLikeGetText();
     }
 
-    @GetMapping("/stats")
-    public Map<String, Integer> getStats() {
-        return likeService.getStats();
+    @GetMapping("/status")
+    public String showStatus() {
+        return likeService.getCurrentLikesText();
+    }
+
+    @GetMapping("/del-like")
+    public String delLike() {
+        return likeService.delLikeGetText();
+    }
+
+    @GetMapping("/reset-like")
+    public String resetLike() {
+        return likeService.resetLikeGetText();
     }
 }
